@@ -48,11 +48,13 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               controller: emailController,
               textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(hintText: 'Email'),
               // decoration: ,
             ),
             TextField(
               controller: password,
+              keyboardType: TextInputType.visiblePassword,
               decoration: const InputDecoration(hintText: 'Password'),
               textInputAction: TextInputAction.done,
             ),
@@ -108,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text.trim(), password: password.text.trim());
     } on FirebaseAuthException catch (e) {
-      Utils.showSnackBar(e.message,Colors.red);
+      Utils.showSnackBar(e.message, Colors.red);
     }
     Get.back();
   }

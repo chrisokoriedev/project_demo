@@ -39,12 +39,10 @@ class _SignupPageState extends State<SignupPage> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(), password: password.text.trim());
     } on FirebaseAuthException catch (e) {
-      Utils.showSnackBar(e.message,Colors.red);
+      Utils.showSnackBar(e.message, Colors.red);
     }
     Get.back();
   }
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +70,7 @@ class _SignupPageState extends State<SignupPage> {
               TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(hintText: 'Email'),
+                keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) =>
@@ -82,6 +81,7 @@ class _SignupPageState extends State<SignupPage> {
               TextFormField(
                 controller: password,
                 decoration: const InputDecoration(hintText: 'Password'),
+                keyboardType: TextInputType.visiblePassword,
                 textInputAction: TextInputAction.next,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) => value != null && value.length < 6
@@ -90,6 +90,7 @@ class _SignupPageState extends State<SignupPage> {
               ),
               TextFormField(
                 controller: confrimPassword,
+                keyboardType: TextInputType.visiblePassword,
                 decoration: const InputDecoration(hintText: 'Confrim Password'),
                 textInputAction: TextInputAction.done,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -108,7 +109,9 @@ class _SignupPageState extends State<SignupPage> {
                     backgroundColor: MaterialStateColor.resolveWith(
                         (states) => Colors.teal)),
                 onPressed: signUp,
-                child: const Text('Sign up'),
+                child: const Text(
+                  'Sign up',
+                ),
               ),
               const SizedBox(height: 30),
               RichText(

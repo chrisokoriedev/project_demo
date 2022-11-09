@@ -77,7 +77,8 @@ class _EditProfileState extends State<EditProfile> {
                 TextFormField(
                   initialValue: user.displayName,
                   textInputAction: TextInputAction.next,
-                  decoration: customInputdeco(),
+                  decoration:
+                      customInputdeco().copyWith(hintText: 'add username '),
                   onChanged: (value) {
                     setState(() {
                       usernameController.text = value;

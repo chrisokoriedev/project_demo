@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_demo/view/auth/auth.dart';
 import 'package:project_demo/view/auth/utils.dart';
+import 'package:project_demo/view/auth/verifyUser.dart';
 import 'package:project_demo/view/bottomnav/main_control.dart';
 
 Future<void> main() async {
@@ -42,7 +43,7 @@ class MainPage extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.hasData) {
-          return const MainControlScreen();
+          return const VerifyUser();
         } else {
           return const AuthPage();
         }
